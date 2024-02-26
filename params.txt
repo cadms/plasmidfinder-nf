@@ -1,0 +1,15 @@
+usage: plasmidfinder.py [-h] -i INFILE [INFILE ...] [-o OUTDIR] [-tmp TMP_DIR] [-mp METHOD_PATH] [-p DB_PATH] [-d DATABASES] [-l MIN_COV] [-t THRESHOLD] [-x] [--speciesinfo_json SPECIESINFO_JSON] [-q]
+
+-i INPUTFILE input file (fasta or fastq) relative to pwd, up to 2 files
+
+-o OUTDIR outpur directory relative to pwd
+
+-d DATABASE set a specific database
+
+-p DATABASE_PATH set path to database, default is /database
+
+-mp METHOD_PATH set path to method (blast or kma)
+
+-l MIN_COV set threshold for minimum coverage
+
+-t THRESHOLD set threshold for mininum blast identity

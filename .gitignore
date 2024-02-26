@@ -1,0 +1,6 @@
+.nextflow/*
+work/*
+in/*
+out/*
+.nextflow.log*
+mge_results.csv
