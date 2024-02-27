@@ -51,7 +51,7 @@ process CSV{
     val tables
 
     output:
-    path 'mge_results.csv'
+    path 'plasmid_results.csv'
 
     exec:
     gene_list = []
@@ -60,12 +60,12 @@ process CSV{
         sample_genes = []
 
         table
-            .splitCsv(header: true, skip:5)
-            .each {row -> sample_genes.push(row.name)}
+            .splitCsv(header:true,sep:"\t")
+            .each {row -> sample_genes.push(row["Accession number"])}
 
         sample_genes.unique()
         gene_list += sample_genes
-        sample_name = table.name.split("\\.").first()
+        sample_name = table.getSimpleName()
         results[sample_name] = sample_genes
     }
     result_table = ""
@@ -88,7 +88,7 @@ process CSV{
     headers = gene_list.join(',') + "\n"
     result_table = headers + result_table
 
-    csv_file = task.workDir.resolve('mge_results.csv')
+    csv_file = task.workDir.resolve('plasmid_results.csv')
     csv_file.text = result_table
 }
 
@@ -97,6 +97,5 @@ workflow{
         .fromPath(params.in)
 
     PLASMIDFINDER(input_seqs)
-    // CSV(PLASMIDFINDER.out.csv.collect())
-
+    CSV(PLASMIDFINDER.out.tsv.collect())
 }
