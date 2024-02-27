@@ -61,7 +61,7 @@ process CSV{
 
         table
             .splitCsv(header:true,sep:"\t")
-            .each {row -> sample_genes.push(row["Accession number"])}
+            .each {row -> sample_genes.push("${row.Plasmid}_${row["Accession number"]}")}
 
         sample_genes.unique()
         gene_list += sample_genes
