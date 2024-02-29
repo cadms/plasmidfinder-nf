@@ -34,7 +34,8 @@ RUN mkdir /plasmidfinderdb
 
 RUN git clone https://bitbucket.org/genomicepidemiology/plasmidfinder_db.git /plasmidfinderdb
 WORKDIR /plasmidfinderdb
-RUN PLASMID_DB=$(pwd)
+COPY Ssuis.fsa .
+RUN echo "Ssuis\tGram Positive\tSsuis" >> config
 RUN python3 INSTALL.py kma_index
 
 WORKDIR /workdir

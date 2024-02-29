@@ -10,7 +10,8 @@ params.gene_result_column = 1
 params.input_structure = "**/main/assembler/*.fna.gz"
 
 process PLASMIDFINDER{
-    publishDir "$baseDir/out"
+    publishDir "$baseDir/out",
+    saveAs: { fn -> "${((fn =~ /([^.\s]+)/)[0][0])}/$fn" }
 
     input:
     file fasta
@@ -19,8 +20,8 @@ process PLASMIDFINDER{
     path("*.json")                 , emit: json
     path("*.txt")                  , emit: txt
     path("*.tsv")                  , emit: tsv
-    path("*-hit_in_genome_seq.fsa"), emit: genome_seq
-    path("*-plasmid_seqs.fsa")     , emit: plasmid_seq
+    path("*.hit_in_genome_seq.fsa"), emit: genome_seq
+    path("*.plasmid_seqs.fsa")     , emit: plasmid_seq
 
     script:
     def prefix = fasta.getSimpleName()
@@ -37,8 +38,8 @@ process PLASMIDFINDER{
     mv data.json ${prefix}.json
     mv results.txt ${prefix}.txt
     mv results_tab.tsv ${prefix}.tsv
-    mv Hit_in_genome_seq.fsa ${prefix}-hit_in_genome_seq.fsa
-    mv Plasmid_seqs.fsa ${prefix}-plasmid_seqs.fsa
+    mv Hit_in_genome_seq.fsa ${prefix}.hit_in_genome_seq.fsa
+    mv Plasmid_seqs.fsa ${prefix}.plasmid_seqs.fsa
     """
 }
 
