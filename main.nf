@@ -108,7 +108,7 @@ process ZIP{
 
     """
     current_date=\$(date +"%Y-%m-%d")
-    outfile="mefinder_\${current_date}.tar.gz"
+    outfile="plasmidfinder_\${current_date}.tar.gz"
     tar -chzf \${outfile} ${files.join(' ')} $csv
     """
 }
