@@ -117,7 +117,7 @@ workflow{
 
     results = PLASMIDFINDER.out
     CSV(results.tsv.collect())
-        if (params.gzip){
+    if (params.gzip){
         all_results = results.json
                 .mix(results.txt)
                 .mix(results.tsv)
