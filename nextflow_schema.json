@@ -38,7 +38,17 @@
                   "type": "boolean",
                   "description": "If set to true results will be gzipped for easy downloading. ",
                   "fa_icon": "fas fa-file-archive"
-              }
+              },
+              "coverage": {
+                "type": "number",
+                "description": "Select minimum % coverage (default is 0.60)",
+                "fa_icon": "fas fa-file-archive"
+            },
+            "identity": {
+                "type": "number",
+                "description": "Threshold for minimum % identity (default is 0.90) ",
+                "fa_icon": "fas fa-file-archive"
+            }
           }
       }
   },

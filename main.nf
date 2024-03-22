@@ -3,7 +3,8 @@ params.input = "$baseDir/in"
 params.output = "$baseDir/out"
 params.gene_result_column = 1
 params.gzip = false
-
+params.coverage = 0.6
+params.identity = 0.9
 
 //this is the folder structure of bactopia output
 params.input_structure = "**/main/assembler/*.fna.gz"
@@ -31,7 +32,10 @@ process PLASMIDFINDER{
         gzip -c -d $fasta > $fasta_name
     fi
 
-    plasmidfinder.py -i $fasta_name -x -p /plasmidfinderdb -o ./
+    plasmidfinder.py -i $fasta_name -x -p /plasmidfinderdb \
+    -l $params.coverage \
+    -t $params.identity \
+    -o ./
 
     # Rename hard-coded outputs with prefix to avoid name collisions
     mv data.json ${prefix}.json
