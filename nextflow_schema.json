@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://raw.githubusercontent.com/cadms/ksnp-nf/nextflow_schema.json",
-  "title": "BacMet pipeline parameters",
-  "description": "Nextflow pipeline to run Plasmid Finder",
+  "title": "Plasmidfinder pipeline parameters",
+  "description": "Nextflow pipeline to run Plasmidfinder",
   "type": "object",
   "definitions": {
       "required_parameters": {
